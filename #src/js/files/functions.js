@@ -51,35 +51,47 @@ window.addEventListener("load", function () {
 let unlock = true;
 
 // //=================
-//ActionsOnHash
-if (location.hash) {
-	const hsh = location.hash.replace('#', '');
-	if (document.querySelector('.popup_' + hsh)) {
-		popup_open(hsh);
-	} else if (document.querySelector('div.' + hsh)) {
-		_goto(document.querySelector('.' + hsh), 500, '');
-	}
-}
+// //ActionsOnHash
+// if (location.hash) {
+// 	const hsh = location.hash.replace('#', '');
+// 	if (document.querySelector('.popup_' + hsh)) {
+// 		popup_open(hsh);
+// 	} else if (document.querySelector('div.' + hsh)) {
+// 		_goto(document.querySelector('.' + hsh), 500, '');
+// 	}
+// }
 // //=================
 // //Menu
-// let iconMenu = document.querySelector(".icon-menu");
-// if (iconMenu != null) {
-// 	let delay = 500;
-// 	let menuBody = document.querySelector(".menu__body");
-// 	iconMenu.addEventListener("click", function (e) {
-// 		if (unlock) {
-// 			body_lock(delay);
-// 			iconMenu.classList.toggle("_active");
-// 			menuBody.classList.toggle("_active");
-// 		}
-// 	});
-// };
-// function menu_close() {
-// 	let iconMenu = document.querySelector(".icon-menu");
-// 	let menuBody = document.querySelector(".menu__body");
-// 	iconMenu.classList.remove("_active");
-// 	menuBody.classList.remove("_active");
-// }
+let iconMenu = document.querySelector(".icon-menu");
+if (iconMenu != null) {
+	let delay = 500;
+	let menuBody = document.querySelector(".menu__body");
+	iconMenu.addEventListener("click", function (e) {
+		if (unlock) {
+			body_lock(delay);
+			iconMenu.classList.toggle("_active");
+			menuBody.classList.toggle("_active");
+		}
+	});
+};
+function menu_close() {
+	let iconMenu = document.querySelector(".icon-menu");
+	let menuBody = document.querySelector(".menu__body");
+	iconMenu.classList.remove("_active");
+	menuBody.classList.remove("_active");
+}
+// чтобы меню закрывалось после нажатия на ссылки и также после нажатия на свободном месте в мобильном меню:
+let clickableItems = document.querySelectorAll(".menu__link, .menu__list, .menu__logo");
+if (clickableItems) {
+	for (let index = 0; index < clickableItems.length; index++) {
+		const el = clickableItems[index];
+		el.addEventListener("click", function (e) {
+			menu_close();
+			let body = document.querySelector("body");
+			body.classList.remove("_lock");
+		});
+	}
+}
 //=================
 //BodyLock
 function body_lock(delay) {
@@ -623,107 +635,43 @@ animate({
 
 
 
-// // spoilers
-// $('.block__content').slideUp(300); // это как быстрый способ изначально свернуть контент у всех спойлеров (можно сделать и через display: none у .block__content - но я его сделал флекс-контейнером через display: flex)
-
-// $('.block__title').click(function(event) {
-// 	if($('.block').hasClass('one')){
-// 		$('.block__title').not($(this)).removeClass('active');
-// 		$('.block__content').not($(this).next()).slideUp(300);
-// 	}
-// 	$(this).toggleClass('active').next().slideToggle(300);
-// });
 
 
 
-// var isMobile = { Android: function () { return navigator.userAgent.match(/Android/i); }, BlackBerry: function () { return navigator.userAgent.match(/BlackBerry/i); }, iOS: function () { return navigator.userAgent.match(/iPhone|iPad|iPod/i); }, Opera: function () { return navigator.userAgent.match(/Opera Mini/i); }, Windows: function () { return navigator.userAgent.match(/IEMobile/i); }, any: function () { return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows()); } };
-// if (isMobile.any()) { }
-
-// if (location.hash) {
-// 	var hsh = location.hash.replace('#', '');
-// 	if ($('.popup-' + hsh).length > 0) {
-// 		popupOpen(hsh);
-// 	} else if ($('div.' + hsh).length > 0) {
-// 		$('body,html').animate({ scrollTop: $('div.' + hsh).offset().top, }, 500, function () { });
-// 	}
-// }
-// $('.wrapper').addClass('loaded');
-
-// var act = "click";
-// if (isMobile.iOS()) {
-// 	var act = "touchstart";
-// }
-
-let iconMenu = document.querySelector(".icon-menu");
-let menuBody = document.querySelector(".header-mobile-menu");
-let body = document.querySelector("body");
-if (iconMenu) {
-	iconMenu.addEventListener("click", function () {
-		iconMenu.classList.toggle("active");
-		menuBody.classList.toggle("active");
-
-		body.classList.toggle("lock");
-	});
-}
 
 
-// function ibg() {
-// 	if (isIE()) {
-// 		let ibg = document.querySelectorAll(".ibg");
-// 		for (var i = 0; i < ibg.length; i++) {
-// 			if (ibg[i].querySelector('img') && ibg[i].querySelector('img').getAttribute('src') != null) {
-// 				ibg[i].style.backgroundImage = 'url(' + ibg[i].querySelector('img').getAttribute('src') + ')';
-// 			}
-// 		}
-// 	}
-// }
-// ibg();
+
+
+
 
 
 // Adaptive functions v1.0
 function adaptive_header(w, h) {
-	var headerMobileMenu = $('.header-mobile-menu');
-	var headerButtons = $('.header__buttons');
-	if(w < 767) {
-		if (!headerButtons.hasClass('small-screen')) {
-			headerButtons.addClass('small-screen').appendTo(headerMobileMenu);
-		}
-	}
-	else {
-		if (headerButtons.hasClass('small-screen')) {
-			headerButtons.removeClass('small-screen').prependTo($('.header__column').eq(2));
-		}
-	}
+	// var headerMobileMenu = $('.menu__body');
+	// var headerButtons = $('.header__buttons');
+	// if(w < 767) {
+	// 	if (!headerButtons.hasClass('small-screen')) {
+	// 		headerButtons.addClass('small-screen').appendTo(headerMobileMenu);
+	// 	}
+	// }
+	// else {
+	// 	if (headerButtons.hasClass('small-screen')) {
+	// 		headerButtons.removeClass('small-screen').prependTo($('.header__column').eq(2));
+	// 	}
+	// }
 
-	var headerMenu = $('.header__menu');
-	if(w < 767) {
-		if(!headerMenu.hasClass('small-screen')) {
-			headerMenu.addClass('small-screen').appendTo(headerMobileMenu);
-		}
-	}
-	else {
-		if (headerMenu.hasClass('small-screen')) {
-			headerMenu.removeClass('small-screen').prependTo($('.header__column').eq(1));
-		}
-	}
+	// var headerMenu = $('.header__menu');
+	// if(w < 767) {
+	// 	if(!headerMenu.hasClass('small-screen')) {
+	// 		headerMenu.addClass('small-screen').appendTo(headerMobileMenu);
+	// 	}
+	// }
+	// else {
+	// 	if (headerMenu.hasClass('small-screen')) {
+	// 		headerMenu.removeClass('small-screen').prependTo($('.header__column').eq(1));
+	// 	}
+	// }
 }
-
-
-// spoilers
-// let spoilers = document.querySelectorAll(".block__content");
-// for (var i = 1; i < spoilers.length; i++) { // close all spoilers - starting from the second one
-// 	spoilers[i]._slideUp(300);
-// }
-// // $('.block__content').slideUp(300); // это как быстрый способ изначально свернуть контент у всех спойлеров (можно сделать и через display: none у .block__content - но я его сделал флекс-контейнером через display: flex)
-
-// $('.block__title').click(function(event) {
-// 	if($('.block').hasClass('one')){
-// 		$('.block__title').not($(this)).removeClass('active');
-// 		$('.block__content').not($(this).next()).slideUp(300);
-// 	}
-// 	$(this).toggleClass('active').next().slideToggle(300);
-// });
-
 function adaptive_testimonials(w, h) {
 	var testimonials__btn = $('.testimonials__btn');
 	var testimonials__row = $('.testimonials__row');

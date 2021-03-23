@@ -663,6 +663,9 @@ body.ie .ibg img {
 }
 
 .menu__list {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -677,6 +680,10 @@ body.ie .ibg img {
 
 .menu__link:hover {
   color: #061e37;
+}
+
+.menu__mobile-buttons {
+  display: none;
 }
 
 .header__buttons {
@@ -1555,8 +1562,44 @@ body.ie .ibg img {
     background-color: #061e37;
   }
 
+  .header__column:last-child {
+    display: none;
+  }
+
   .header__logo .logo__text {
     font-size: 13px;
+  }
+
+  .menu__body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    left: -120%;
+    top: 0;
+    background-color: #061e37;
+    padding: 120px 10px 0px 10px;
+    -webkit-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .menu__body._active {
+    left: 0;
+  }
+
+  .menu__mobile-buttons {
+    display: block;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
   }
 
   .icon-menu {
@@ -1591,49 +1634,24 @@ body.ie .ibg img {
     bottom: 0px;
   }
 
-  .icon-menu.active span {
+  .icon-menu._active span {
     -webkit-transform: scale(0);
         -ms-transform: scale(0);
             transform: scale(0);
   }
 
-  .icon-menu.active span:first-child {
+  .icon-menu._active span:first-child {
     -webkit-transform: rotate(-45deg);
         -ms-transform: rotate(-45deg);
             transform: rotate(-45deg);
     top: 9px;
   }
 
-  .icon-menu.active span:last-child {
+  .icon-menu._active span:last-child {
     -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
             transform: rotate(45deg);
     bottom: 9px;
-  }
-
-  .header-mobile-menu {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    left: -120%;
-    top: 0;
-    background-color: #061e37;
-    padding: 120px 10px 0px 10px;
-    -webkit-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
-    transition: all 0.4s ease 0s;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-
-  .header-mobile-menu.active {
-    left: 0;
   }
 
   .header__buttons {
