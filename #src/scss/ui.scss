@@ -1,0 +1,196 @@
+
+//====================================================================================================
+// .ibg {
+// 	position: relative;
+// 	img {
+// 		position: absolute;
+// 		width: 100%;
+// 		height: 100%;
+// 		top: 0;
+// 		left: 0;
+// 		object-fit: cover;
+// 	}
+// }
+
+body.ie {
+	.ibg {
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	.ibg img {
+		width: 0;
+		height: 0;
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+//====================================================================================================
+.video {
+	position: relative;
+	overflow: hidden;
+	height: 0;
+	padding-bottom: 56.25%;
+	video,
+	iframe,
+	object,
+	embed {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}
+.videobg {
+	video,
+	iframe,
+	object,
+	embed {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		min-width: 100%;
+		min-height: 100%;
+		width: auto;
+		height: auto;
+		z-index: -100;
+		transform: translateX(-50%) translateY(-50%);
+		background-size: cover;
+	}
+}
+//====================================================================================================
+
+//====================================================================================================
+.slider.slick-slider {
+	position: relative;
+	.slick-track,
+	.slick-list {
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		-o-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	.slick-list {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+	}
+	.slick-track {
+		position: relative;
+		width: 100%;
+		// display: flex;
+		display: block; // нужно для вертикального слайдера
+	}
+	.slick-slide {
+		position: relative;
+	}
+	.slick-arrow {
+		width: 30px;
+		height: 20px;
+
+		position: absolute;
+		left: 50%;
+		margin: 0px 0px 0px 40px;
+		@media (min-width: 1500px){
+			margin: 0px 0px 0px -15px;
+		}
+		@media (max-width: $md3+px){
+			margin: 0px 0px 0px -15px;
+		}
+
+		z-index: 10;
+		font-size: 0;
+		&.slick-prev {
+			top: 0;
+			background: url('../img/testimonials/keyboard_arrow_up-white-18dp.svg') 0 0 / 100% no-repeat;
+		}
+		&.slick-next {
+			bottom: 0;
+			background: url('../img/testimonials/keyboard_arrow_down-white-18dp.svg') 0 0 / 100% no-repeat;
+		}
+	}
+	.slick-dots {
+		li {
+			button {
+			}
+			&.slick-active {
+				button {
+				}
+			}
+		}
+	}
+}
+
+.slider-team.slick-slider {
+	position: relative;
+	.slick-track,
+	.slick-list {
+		-webkit-transform: translate3d(0, 0, 0);
+		-moz-transform: translate3d(0, 0, 0);
+		-ms-transform: translate3d(0, 0, 0);
+		-o-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+	.slick-list {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+	}
+	.slick-track {
+		position: relative;
+		width: 100%;
+		display: flex;
+	}
+	.slick-slide {
+		position: relative;
+	}
+	.slick-arrow {
+		width: 20px;
+		height: 50px;
+
+		position: absolute;
+		top: 50%;
+		margin: -25px 0px 0px 0px;
+
+		z-index: 10;
+		font-size: 0;
+		&.slick-prev {
+			left: -70px;
+			background: url('../img/team/sl-arrow_l.svg') 0 0 / 100% no-repeat;
+		}
+		&.slick-next {
+			right: -70px;
+			background: url('../img/team/sl-arrow_r.svg') 0 0 / 100% no-repeat;
+		}
+		@media (max-width: 800px){
+			width: 0px;
+			height: 0px;
+		}
+	}
+	.slick-dots {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		li {
+			list-style: none;
+			margin: 0px 10px;
+			button {
+				font-size: 0;
+				width: 10px;
+				height: 10px;
+				border-radius: 50%;
+				background-color: transparent;
+				border: 1px solid #90a4ae;
+			}
+			&.slick-active {
+				button {
+					background-color: #90a4ae;
+				}
+			}
+		}
+	}
+}
+//=====================================================================================================================
