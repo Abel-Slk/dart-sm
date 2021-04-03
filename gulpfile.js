@@ -40,9 +40,6 @@ let path = {
 		favicon: src_folder + "/img/favicon.{jpg,png,svg,gif,ico,webp}",
 		html: [src_folder + "/*.html", "!" + src_folder + "/_*.html"],
 		js: [src_folder + "/js/app.js", src_folder + "/js/vendors.js"],
-		js_async_scripts: [
-			src_folder + "/js/libs/lazysizes.min.js"
-		],
 		css: src_folder + "/scss/style.scss",
 		images: [src_folder + "/img/**/*.{jpg,jpeg,png,svg,gif,ico,webp}", "!**/favicon.*"],
 		fonts: src_folder + "/fonts/*.ttf",
@@ -118,12 +115,6 @@ function js() {
 				extname: ".js"
 			})
 		)
-		.pipe(dest(path.build.js))
-		.pipe(browsersync.stream());
-}
-function js_async_scripts() {
-	return src(path.src.js_async_scripts)
-		.pipe(plumber())
 		.pipe(dest(path.build.js))
 		.pipe(browsersync.stream());
 }
@@ -223,13 +214,12 @@ function watchFiles() {
 	gulp.watch([path.watch.js], js);
 	gulp.watch([path.watch.images], images);
 }
-let build = gulp.series(clean, fonts_otf, gulp.parallel(html, css, js, js_async_scripts, favicon, images, videos), fonts, gulp.parallel(fontstyle));
+let build = gulp.series(clean, fonts_otf, gulp.parallel(html, css, js, favicon, images, videos), fonts, gulp.parallel(fontstyle));
 let watch = gulp.parallel(build, watchFiles, browserSync);
 
 exports.html = html;
 exports.css = css;
 exports.js = js;
-exports.js_async_scripts = js_async_scripts;
 exports.videos = videos;
 exports.favicon = favicon;
 exports.fonts_otf = fonts_otf;
